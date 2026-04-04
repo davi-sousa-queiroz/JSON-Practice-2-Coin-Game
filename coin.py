@@ -6,3 +6,7 @@ class Coin:
     def coin(self):
         print("\n+1 coin")
         self.coins += 1
+
+    def view_coins(self):
+        print("\nYour coins:")
+        print(self.coins)
