@@ -1,16 +1,26 @@
-class Coin:
+import json
 
-    def __init__(self):
-        self.coins = 0
+try:
+    with open("data.json", "r") as file:
+        data = json.load(file)
+except FileNotFoundError:
+    data = {"Coins": 0}
+    with open("data.json", "w") as file:
+        json.dump(data, file)
 
-    def coin(self):
-        print("\n+1 coin")
-        self.coins += 1
+while True:
+    print("\n1. Add coins")
+    print("2. view coins")
+    print("3. Quit")
 
-    def view_coins(self):
-        print("\nYour coins:")
-        print(self.coins)
-
-    def menu(self):
-        print("\n1. Coin")
-        print("2. View coins")
+    choice = int(input("\nEnter your choice: "))
+    if choice == 1:
+        amount = int(input("\nEnter amount: "))
+        data["Coins"] += amount
+        with open("data.json", "w") as file:
+            json.dump(data, file)
+    elif choice == 2:
+        print(f"\nYou have {data['Coins']} coins.")
+    elif choice == 3:
+        print("Thank you for playing!")
+        break
